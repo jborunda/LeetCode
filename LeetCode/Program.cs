@@ -9,8 +9,8 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine(Palidrome2(12321));
-            Console.WriteLine(RomanToInt("IVX"));
+            string[] strs = { "jaime", "jaim", "jai" };
+            Console.WriteLine(LongestCommonPrefix(strs));
             Console.ReadLine();
         }
 
@@ -27,15 +27,15 @@ namespace LeetCode
 
             int iteration = number.ToString().Length;
             //12345
-            for (int i = 0; i < iteration;i++)
+            for (int i = 0; i < iteration; i++)
             {
                 int foo = number % 10;
-                reverse = String.Concat(reverse,Math.Abs(foo));   
+                reverse = String.Concat(reverse, Math.Abs(foo));
                 number /= 10;
             }
             reverse = reverse.TrimStart('0');
             if (neg)
-                return -1*Convert.ToInt32(reverse);
+                return -1 * Convert.ToInt32(reverse);
             else
                 return Convert.ToInt32(reverse);
         }
@@ -62,21 +62,21 @@ namespace LeetCode
                 return false;
 
         }
-         
+
         public static bool Palidrome2(int x)
         {
-                if (x < 0 || x % 10 == 0 && x != 10)
-                    return false;
+            if (x < 0 || x % 10 == 0 && x != 10)
+                return false;
 
-                int half = 0;
-                
+            int half = 0;
 
-                //12321
-                while (x > half)
-                {
-                    half = half * 10 + x % 10;
-                    x /= 10;
-                }
+
+            //12321
+            while (x > half)
+            {
+                half = half * 10 + x % 10;
+                x /= 10;
+            }
 
             return x == half || x == half / 10;
         }
@@ -99,13 +99,13 @@ namespace LeetCode
             int result = dictionary[s.ElementAt(length - 1)];
 
 
-            for(int i = length - 2; i >= 0; i--)
+            for (int i = length - 2; i >= 0; i--)
             {
-                if(dictionary[s.ElementAt(i+1)] <= dictionary[s.ElementAt(i)] )
+                if (dictionary[s.ElementAt(i + 1)] <= dictionary[s.ElementAt(i)])
                 {
                     result += dictionary[s.ElementAt(i)];
                 }
-                else if(dictionary[s.ElementAt(i+1)] > dictionary[s.ElementAt(i)])
+                else if (dictionary[s.ElementAt(i + 1)] > dictionary[s.ElementAt(i)])
                 {
                     result -= dictionary[s.ElementAt(i)];
                 }
@@ -113,6 +113,28 @@ namespace LeetCode
 
             return result;
 
+        }
+        public static string LongestCommonPrefix(string[] strs)
+        {
+            if (strs.Length == 0 || strs == null )
+                return "";
+            string longestPrefix = strs[0];
+            for(int i = 1; i < strs.Length; i++)
+            {
+                int j = 0;
+                string currentString = strs[i];
+
+                while (j < longestPrefix.Length && j < currentString.Length && longestPrefix[j] == currentString[j])
+                {
+                    j++;
+                }
+
+                longestPrefix = longestPrefix.Substring(0, j); 
+
+
+            }
+            
+            return longestPrefix;
         }
     }
 }

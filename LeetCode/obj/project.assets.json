@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jaime\\Documents\\LeetCode\\LeetCode\\LeetCode.csproj",
+      "projectUniqueName": "C:\\Users\\jaime\\OneDrive\\Documents\\LeetCode\\LeetCode\\LeetCode.csproj",
       "projectName": "LeetCode",
-      "projectPath": "C:\\Users\\jaime\\Documents\\LeetCode\\LeetCode\\LeetCode.csproj",
+      "projectPath": "C:\\Users\\jaime\\OneDrive\\Documents\\LeetCode\\LeetCode\\LeetCode.csproj",
       "packagesPath": "C:\\Users\\jaime\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jaime\\Documents\\LeetCode\\LeetCode\\obj\\",
+      "outputPath": "C:\\Users\\jaime\\OneDrive\\Documents\\LeetCode\\LeetCode\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
