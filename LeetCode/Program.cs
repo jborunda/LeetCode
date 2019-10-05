@@ -10,7 +10,7 @@ namespace LeetCode
         static void Main(string[] args)
         {
             string[] strs = { "jaime", "jaim", "jai" };
-            Console.WriteLine(LongestCommonPrefix(strs));
+            Console.WriteLine(IsValid("[]"));
             Console.ReadLine();
         }
 
@@ -116,10 +116,10 @@ namespace LeetCode
         }
         public static string LongestCommonPrefix(string[] strs)
         {
-            if (strs.Length == 0 || strs == null )
+            if (strs.Length == 0 || strs == null)
                 return "";
             string longestPrefix = strs[0];
-            for(int i = 1; i < strs.Length; i++)
+            for (int i = 1; i < strs.Length; i++)
             {
                 int j = 0;
                 string currentString = strs[i];
@@ -129,12 +129,48 @@ namespace LeetCode
                     j++;
                 }
 
-                longestPrefix = longestPrefix.Substring(0, j); 
+                longestPrefix = longestPrefix.Substring(0, j);
 
 
             }
-            
+
             return longestPrefix;
+        }
+        public static bool IsValid(string s)
+        {
+
+            Stack<char> stack = new Stack<char>();
+
+
+
+            foreach (char c in s.ToCharArray())
+            {
+                if (c == '(' || c == '[' || c == '{')
+                {
+                    stack.Push(c);
+                }
+                else
+                {
+                    if (!(stack.Count == 0) && helper(stack.Peek(), c))
+                    {
+                        stack.Pop();
+                    }
+                    else return false;
+                }
+
+
+
+            }
+
+
+            return stack.Count == 0;
+        }
+
+        public static bool helper(char left, char right)
+        {
+            if (left == ' ' || right == ' ')
+                return false;
+            return left == '(' && right == ')' || left == '[' && right == ']' || left == '{' && right == '}';
         }
     }
 }
