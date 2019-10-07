@@ -3,15 +3,32 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
+
+
 namespace LeetCode
 {
     class Program
     {
         static void Main(string[] args)
         {
-            string[] strs = { "jaime", "jaim", "jai" };
-            Console.WriteLine(IsValid("[]"));
-            Console.ReadLine();
+            ListNode x = new ListNode(0);
+            ListNode y = new ListNode(0);
+
+            x.next = new ListNode(1);
+            y.next = new ListNode(3);
+            y.next.next = new ListNode(6);
+            y.next.next.next = new ListNode(16);
+
+            ListNode newlist = new ListNode(0);
+
+
+            newlist = MergeTwoListNodes(x, y);
+            newlist.ListAllNodes(newlist);
+            
+
+            
+
+            
         }
 
         public static int Reverse(int number)
@@ -151,7 +168,7 @@ namespace LeetCode
                 }
                 else
                 {
-                    if (!(stack.Count == 0) && helper(stack.Peek(), c))
+                    if (!(stack.Count == 0) && Helper(stack.Peek(), c))
                     {
                         stack.Pop();
                     }
@@ -166,11 +183,41 @@ namespace LeetCode
             return stack.Count == 0;
         }
 
-        public static bool helper(char left, char right)
+        public static bool Helper(char left, char right)
         {
             if (left == ' ' || right == ' ')
                 return false;
             return left == '(' && right == ')' || left == '[' && right == ']' || left == '{' && right == '}';
         }
+
+        public static ListNode MergeTwoListNodes(ListNode l1, ListNode l2)
+        {
+            ListNode x = new ListNode(0);
+            ListNode newList = x;
+
+            while(l1 != null && l2 != null  )
+            {
+                if (l1.value <= l2.value)
+                {
+                    newList.next = l1;
+                    l1 = l1.next;
+                }
+                else if( l2.value < l1.value)
+                {
+                    newList.next = l2;
+                    l2 = l2.next;
+                }
+
+                newList = newList.next;
+
+
+            }
+
+            if (l1 != null) newList.next = l1;
+            if (l2 != null) newList.next = l2;
+
+            return x.next;
+        }
     }
+
 }
