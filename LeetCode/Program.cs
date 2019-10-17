@@ -11,24 +11,11 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            ListNode x = new ListNode(0);
-            ListNode y = new ListNode(0);
-
-            x.next = new ListNode(1);
-            y.next = new ListNode(3);
-            y.next.next = new ListNode(6);
-            y.next.next.next = new ListNode(16);
-
-            ListNode newlist = new ListNode(0);
+            string haystack = "hello", needle = "ll";
 
 
-            newlist = MergeTwoListNodes(x, y);
-            newlist.ListAllNodes(newlist);
-            
-
-            
-
-            
+            Console.WriteLine(StrStr(haystack, needle));
+            Console.ReadLine();
         }
 
         public static int Reverse(int number)
@@ -195,14 +182,14 @@ namespace LeetCode
             ListNode x = new ListNode(0);
             ListNode newList = x;
 
-            while(l1 != null && l2 != null  )
+            while (l1 != null && l2 != null)
             {
                 if (l1.value <= l2.value)
                 {
                     newList.next = l1;
                     l1 = l1.next;
                 }
-                else if( l2.value < l1.value)
+                else if (l2.value < l1.value)
                 {
                     newList.next = l2;
                     l2 = l2.next;
@@ -218,6 +205,80 @@ namespace LeetCode
 
             return x.next;
         }
-    }
 
+
+        //Given a sorted array nums, remove the duplicates in-place such that each element appear only once and return the new length.
+        public static int Len(int[] nums)
+        {
+            //[1,1,2]
+            if (nums == null || nums.Length == 0)
+                return 0;
+            int i = 0;
+            for (int j = 0; j < nums.Length; j++)
+            {
+
+                if (nums[j] != nums[i])
+                {
+                    i++;
+                    nums[i] = nums[j];
+
+                }
+
+            }
+            return i + 1;
+        }
+
+
+
+        public static int RemoveElement(int[] nums, int val)
+        {
+            if (nums == null || nums.Length == 0)
+                return 0;
+
+            int j = 0;
+            //[0,1,2,2,3,0,4,2]
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (nums[i] != val)
+                {
+                    nums[j] = nums[i];
+                    j++;
+                }
+
+            }
+
+
+
+            return j;
+
+        }
+
+        public static int StrStr(string haystack, string needle)
+        {
+
+            if (haystack == null || needle == null)
+                return -1;
+
+
+            for(int i = 0; i < haystack.Length - needle.Length + 1; i++)
+            {
+                int j;
+                for(j = 0; j < needle.Length; j++)
+                {
+                    if(haystack[i + j] != needle[j])
+                    {
+                        break;
+                    }
+                }
+                if (j == needle.Length)
+                    return i;
+                
+            }
+
+            return -1;
+
+        }
+        
+    }
 }
+
