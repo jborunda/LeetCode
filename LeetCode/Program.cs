@@ -229,7 +229,7 @@ namespace LeetCode
         }
 
 
-
+        //Given an array nums and a value val, remove all instances of that value in-place and return the new length.
         public static int RemoveElement(int[] nums, int val)
         {
             if (nums == null || nums.Length == 0)
@@ -252,7 +252,7 @@ namespace LeetCode
             return j;
 
         }
-
+        //Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
         public static int StrStr(string haystack, string needle)
         {
 
@@ -278,7 +278,43 @@ namespace LeetCode
             return -1;
 
         }
-        
+
+        //return the index where you would insert a int into an array of ints
+        public static int SearchInsert(int[] nums, int target)
+        {
+            int start = 0;
+            int end = nums.Length - 1;
+            
+
+            //Input: [1,3,5,6], 5
+            while (start + 1  < end)
+            {
+                int mid = start + (end-start) / 2;
+                if (nums[mid] == target)
+                    return mid;
+
+                if(nums[mid] < target)
+                {
+                    start = mid;
+                }
+                else if(nums[mid] > target)
+                {
+                    end = mid;
+                }
+            }
+
+            if (nums[start] >= target)
+            {
+                return start;
+            }
+            else if (nums[end] < target)
+                return end + 1;
+            else
+                return end;
+
+
+        }
+
     }
 }
 
