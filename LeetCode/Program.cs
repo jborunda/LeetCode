@@ -21,7 +21,8 @@ namespace LeetCode
 
             //a.right.left = new TreeNode(1);
             a.right.right = new TreeNode(2);
-            foreach(int n in InOrderIterative(a))
+            Console.WriteLine(MaxDepth(a));
+            foreach(int n in PostOrderTraversal(a))
             {
                 Console.WriteLine(n);
                 Debug.WriteLine(n);
@@ -387,6 +388,53 @@ namespace LeetCode
 
         }
 
+        public static List<int> PostOrderTraversal(TreeNode root) {
+            Stack<TreeNode> s1 = new Stack<TreeNode>();
+            Stack<TreeNode> s2 = new Stack<TreeNode>();
+            List<int> list = new List<int>();
+            s1.Push(root);
+
+            while(! (s1.Count == 0))
+            {
+                root = s1.Pop();
+                s2.Push(root);
+
+                if (root.left != null)
+                    s1.Push(root.left);
+                if (root.right != null)
+                    s1.Push(root.right);
+
+            }
+
+            while(!(s2.Count() == 0))
+            {
+
+                list.Add(s2.Pop().val);
+
+
+            }
+            return list;
+        }
+
+        public static int MaxDepth(TreeNode root)
+        {
+            if (root == null) return 0;
+
+            int leftHeight =  MaxDepth(root.left);
+            int rightHeight = MaxDepth(root.right);
+
+
+
+            return 1 + Math.Max(leftHeight,rightHeight);
+        }
+
+        public static string CountAndSay(int n)
+        {
+            string result = "";
+
+            return result;
+            
+        }
 
 
 
