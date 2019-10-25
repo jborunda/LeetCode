@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -11,11 +12,25 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            string haystack = "hello", needle = "ll";
+            TreeNode a = new TreeNode(12);
+            a.left = new TreeNode(5);
+            a.right = new TreeNode(6);
 
+            a.left.left = new TreeNode(4);
+            a.left.right = new TreeNode(9);
 
-            Console.WriteLine(StrStr(haystack, needle));
+            //a.right.left = new TreeNode(1);
+            a.right.right = new TreeNode(2);
+            foreach(int n in InOrderIterative(a))
+            {
+                Console.WriteLine(n);
+                Debug.WriteLine(n);
+            }
+
             Console.ReadLine();
+
+
+
         }
 
         public static int Reverse(int number)
@@ -313,7 +328,67 @@ namespace LeetCode
                 return end;
 
 
+
         }
+
+        public static List<TreeNode> PreOrderIterative(TreeNode root)
+        {
+            List<TreeNode> list = new List<TreeNode>();
+            //if (root == null) return errorexception();
+
+            Stack<TreeNode> s = new Stack<TreeNode>();
+
+            s.Push(root);
+            while(! (s.Count() == 0))
+            {
+                root = s.Pop();
+                list.Add(root);
+                if (root.right != null)
+                    s.Push(root.right);
+                if (root.left != null)
+                    s.Push(root.left);
+
+            }
+            return list;
+        }
+
+        public static List<int> InOrderIterative(TreeNode root)
+        {
+            Stack<TreeNode> s = new Stack<TreeNode>();
+
+            List<int> list = new List<int>();
+
+            //add the first rootnode into the stack
+            while(true)
+            {
+
+                if(root != null)
+                {
+                    s.Push(root); 
+                    root = root.left;
+                    
+                }
+                else
+                {
+                    if (s.Count() == 0) break;
+                    root = s.Pop();
+                    //we want to add the value of the node we pop in order
+                    list.Add(root.val);
+                    Debug.WriteLine(root.val);
+                    root = root.right;
+                    
+                }
+                
+
+
+            }
+            return list;
+
+
+        }
+
+
+
 
     }
 }
