@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-
-
+using System.Text;
 
 namespace LeetCode
 {
@@ -12,22 +11,22 @@ namespace LeetCode
     {
         static void Main(string[] args)
         {
-            TreeNode a = new TreeNode(12);
-            a.left = new TreeNode(5);
-            a.right = new TreeNode(6);
+            //TreeNode a = new TreeNode(12);
+            //a.left = new TreeNode(5);
+            //a.right = new TreeNode(6);
 
-            a.left.left = new TreeNode(4);
-            a.left.right = new TreeNode(9);
+            //a.left.left = new TreeNode(4);
+            //a.left.right = new TreeNode(9);
 
-            //a.right.left = new TreeNode(1);
-            a.right.right = new TreeNode(2);
-            Console.WriteLine(MaxDepth(a));
-            foreach(int n in PostOrderTraversal(a))
-            {
-                Console.WriteLine(n);
-                Debug.WriteLine(n);
-            }
-
+            ////a.right.left = new TreeNode(1);
+            //a.right.right = new TreeNode(2);
+            //Console.WriteLine(MaxDepth(a));
+            //foreach(int n in PostOrderTraversal(a))
+            //{
+            //    Console.WriteLine(n);
+            //    Debug.WriteLine(n);
+            //}
+            Console.WriteLine(StringCompresion("wwwwaaadexxxxxxywww"));
             Console.ReadLine();
 
 
@@ -436,8 +435,200 @@ namespace LeetCode
             
         }
 
+        //checks to see if a string is unique using a hashtable
+        public static bool IsUnique(string s )
+        {
+            bool value = true;
+            
 
 
+            Hashtable ht = new Hashtable();
+            for(int i = 0; i < s.Length; i++ )
+            {
+                
+                if (ht.Contains(s[i]))
+                    return false;
+                else
+                    ht.Add(s[i], i);
+            }
+
+            return value;
+
+        }
+
+
+        //Given two strings, write a method to decide if one is a permutation of the other
+        public static bool CheckPermutation(string s1, string s2)
+        {
+            bool value = false;
+            int l1 = s1.Length;
+            int l2 = s2.Length;
+
+            if (!(l1 == l2))
+                return value;
+
+            char[] array1 = s1.ToCharArray();
+            char[] array2 = s2.ToCharArray();
+
+            Array.Sort(array1);
+            Array.Sort(array2);
+
+            for(int i = 0; i < array1.Length; i++)
+            {
+                if (array1[i] != array2[i])
+                        return value;
+            }
+
+            return true;
+        }
+
+        //Write a method to replace all spaces in a string with '%20: You may assume that the string has sufficient space at the end to hold the additional characters, 
+        //and that you are given the "true" length of the string
+        public static string ReplaceStringSpace(string s, int len)
+        {
+            char[] chars = s.ToCharArray();
+
+            int spaceCount = 0;
+            
+            
+            for(int i = 0; i < chars.Length; i++)
+            {
+                if (chars[i] == ' ')
+                    spaceCount++;
+
+
+            }
+            int index = (len -1) + (spaceCount*2);
+
+            char[] newChar = new char[index + 1 ];
+            for (int i = len - 1; i>=0 && index >= 0; i--)
+            {
+
+                if (chars[i] == ' ')
+                {
+
+                    newChar[index] = '0';
+                    newChar[index - 1] = '2';
+                    newChar[index - 2] = '%';
+                    index -= 3;
+
+                }
+                else
+
+                    Debug.WriteLine(index +"+" +i);
+                    newChar[index] = chars[i];
+                    index--;
+                  
+
+
+            }
+
+            return new String(newChar).Trim(' ');
+        }
+
+        public static bool PalidromeString(string s)
+        {
+            
+            s = s.Trim(' ');
+            Debug.WriteLine(s);
+            bool value = true;
+            int len = s.Length;
+            int end = len - 1;
+            int i = 0;
+            
+
+
+            while (i != end && i< len && end > 0)
+            {
+                if (s[i] != s[end])
+                    return false;
+                else
+
+                {
+                    end--;
+                    i++;
+                }
+
+            }
+            Debug.WriteLine(i + " " + end);
+            return value;
+        }
+
+        public static bool PalidromePermutation(string s)
+        {
+            s = s.Trim(' ');
+            List<char> list = new List<char>();
+            foreach (char c in s.ToCharArray())
+            {
+                if(list.Contains(c))
+                {
+                    list.Remove(c);
+
+
+                }else
+                    list.Add(c);
+            }
+            if(list.ToArray().Length > 1)
+            {
+                return false;
+            }
+
+            return true;
+            
+        }
+
+
+        public static string StringCompresion(string s)
+        {
+            int count;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < s.Length; i++)
+            {
+                count = 1;
+                while (s[i] == s[i + 1] && i+1 < s.Length )
+                {
+                    count++;
+                    i++;
+                }
+                
+
+                sb = sb.Append(s[i]);
+                sb = sb.Append(count);
+                Debug.WriteLine(sb);
+            }
+
+
+            //int count = 0, k = 0, m = 0;
+            //int i = str.Length;
+            //string name1 = String.Empty;
+
+            //for (int j = 0; j < i; j++)
+            //{
+            //    char name = str[m];
+
+            //    while (j < i)
+            //    {
+            //        if (str[j].ToString() == name.ToString())
+            //        {
+            //            count++;
+            //            k++;
+            //        }
+            //        j++;
+
+            //    }
+            //    j = k - 1;
+
+            //    name1 = name1 + str[m].ToString() + count;
+            //    m = k;
+            //    count = 0;
+
+
+            //}
+            //Console.WriteLine("{0}", name1);
+            //Console.ReadKey();
+            //j1a1i1m2e1
+            return sb.ToString();
+        }
     }
 }
 
