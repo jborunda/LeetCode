@@ -26,7 +26,7 @@ namespace LeetCode
             //    Console.WriteLine(n);
             //    Debug.WriteLine(n);
             //}
-            Console.WriteLine(StringCompresion("wwwwaaadexxxxxxywww"));
+            Console.WriteLine(StringCompresion("aabcccccaaa"));
             Console.ReadLine();
 
 
@@ -275,19 +275,19 @@ namespace LeetCode
                 return -1;
 
 
-            for(int i = 0; i < haystack.Length - needle.Length + 1; i++)
+            for (int i = 0; i < haystack.Length - needle.Length + 1; i++)
             {
                 int j;
-                for(j = 0; j < needle.Length; j++)
+                for (j = 0; j < needle.Length; j++)
                 {
-                    if(haystack[i + j] != needle[j])
+                    if (haystack[i + j] != needle[j])
                     {
                         break;
                     }
                 }
                 if (j == needle.Length)
                     return i;
-                
+
             }
 
             return -1;
@@ -299,20 +299,20 @@ namespace LeetCode
         {
             int start = 0;
             int end = nums.Length - 1;
-            
+
 
             //Input: [1,3,5,6], 5
-            while (start + 1  < end)
+            while (start + 1 < end)
             {
-                int mid = start + (end-start) / 2;
+                int mid = start + (end - start) / 2;
                 if (nums[mid] == target)
                     return mid;
 
-                if(nums[mid] < target)
+                if (nums[mid] < target)
                 {
                     start = mid;
                 }
-                else if(nums[mid] > target)
+                else if (nums[mid] > target)
                 {
                     end = mid;
                 }
@@ -339,7 +339,7 @@ namespace LeetCode
             Stack<TreeNode> s = new Stack<TreeNode>();
 
             s.Push(root);
-            while(! (s.Count() == 0))
+            while (!(s.Count() == 0))
             {
                 root = s.Pop();
                 list.Add(root);
@@ -359,14 +359,14 @@ namespace LeetCode
             List<int> list = new List<int>();
 
             //add the first rootnode into the stack
-            while(true)
+            while (true)
             {
 
-                if(root != null)
+                if (root != null)
                 {
-                    s.Push(root); 
+                    s.Push(root);
                     root = root.left;
-                    
+
                 }
                 else
                 {
@@ -376,9 +376,9 @@ namespace LeetCode
                     list.Add(root.val);
                     Debug.WriteLine(root.val);
                     root = root.right;
-                    
+
                 }
-                
+
 
 
             }
@@ -387,13 +387,14 @@ namespace LeetCode
 
         }
 
-        public static List<int> PostOrderTraversal(TreeNode root) {
+        public static List<int> PostOrderTraversal(TreeNode root)
+        {
             Stack<TreeNode> s1 = new Stack<TreeNode>();
             Stack<TreeNode> s2 = new Stack<TreeNode>();
             List<int> list = new List<int>();
             s1.Push(root);
 
-            while(! (s1.Count == 0))
+            while (!(s1.Count == 0))
             {
                 root = s1.Pop();
                 s2.Push(root);
@@ -405,7 +406,7 @@ namespace LeetCode
 
             }
 
-            while(!(s2.Count() == 0))
+            while (!(s2.Count() == 0))
             {
 
                 list.Add(s2.Pop().val);
@@ -419,12 +420,12 @@ namespace LeetCode
         {
             if (root == null) return 0;
 
-            int leftHeight =  MaxDepth(root.left);
+            int leftHeight = MaxDepth(root.left);
             int rightHeight = MaxDepth(root.right);
 
 
 
-            return 1 + Math.Max(leftHeight,rightHeight);
+            return 1 + Math.Max(leftHeight, rightHeight);
         }
 
         public static string CountAndSay(int n)
@@ -432,20 +433,20 @@ namespace LeetCode
             string result = "";
 
             return result;
-            
+
         }
 
         //checks to see if a string is unique using a hashtable
-        public static bool IsUnique(string s )
+        public static bool IsUnique(string s)
         {
             bool value = true;
-            
+
 
 
             Hashtable ht = new Hashtable();
-            for(int i = 0; i < s.Length; i++ )
+            for (int i = 0; i < s.Length; i++)
             {
-                
+
                 if (ht.Contains(s[i]))
                     return false;
                 else
@@ -473,10 +474,10 @@ namespace LeetCode
             Array.Sort(array1);
             Array.Sort(array2);
 
-            for(int i = 0; i < array1.Length; i++)
+            for (int i = 0; i < array1.Length; i++)
             {
                 if (array1[i] != array2[i])
-                        return value;
+                    return value;
             }
 
             return true;
@@ -489,19 +490,19 @@ namespace LeetCode
             char[] chars = s.ToCharArray();
 
             int spaceCount = 0;
-            
-            
-            for(int i = 0; i < chars.Length; i++)
+
+
+            for (int i = 0; i < chars.Length; i++)
             {
                 if (chars[i] == ' ')
                     spaceCount++;
 
 
             }
-            int index = (len -1) + (spaceCount*2);
+            int index = (len - 1) + (spaceCount * 2);
 
-            char[] newChar = new char[index + 1 ];
-            for (int i = len - 1; i>=0 && index >= 0; i--)
+            char[] newChar = new char[index + 1];
+            for (int i = len - 1; i >= 0 && index >= 0; i--)
             {
 
                 if (chars[i] == ' ')
@@ -515,10 +516,10 @@ namespace LeetCode
                 }
                 else
 
-                    Debug.WriteLine(index +"+" +i);
-                    newChar[index] = chars[i];
-                    index--;
-                  
+                    Debug.WriteLine(index + "+" + i);
+                newChar[index] = chars[i];
+                index--;
+
 
 
             }
@@ -528,17 +529,17 @@ namespace LeetCode
 
         public static bool PalidromeString(string s)
         {
-            
+
             s = s.Trim(' ');
             Debug.WriteLine(s);
             bool value = true;
             int len = s.Length;
             int end = len - 1;
             int i = 0;
-            
 
 
-            while (i != end && i< len && end > 0)
+
+            while (i != end && i < len && end > 0)
             {
                 if (s[i] != s[end])
                     return false;
@@ -560,21 +561,22 @@ namespace LeetCode
             List<char> list = new List<char>();
             foreach (char c in s.ToCharArray())
             {
-                if(list.Contains(c))
+                if (list.Contains(c))
                 {
                     list.Remove(c);
 
 
-                }else
+                }
+                else
                     list.Add(c);
             }
-            if(list.ToArray().Length > 1)
+            if (list.ToArray().Length > 1)
             {
                 return false;
             }
 
             return true;
-            
+
         }
 
 
@@ -582,15 +584,20 @@ namespace LeetCode
         {
             int count;
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < s.Length; i++)
+            for (int i = 0; i <= s.Length -2; i++)
             {
+               
+
                 count = 1;
-                while (s[i] == s[i + 1] && i+1 < s.Length )
+                while (s[i] == s[i + 1] )
                 {
                     count++;
                     i++;
+                    if (i == s.Length - 1)
+                        break;
+                   
                 }
-                
+
 
                 sb = sb.Append(s[i]);
                 sb = sb.Append(count);
@@ -598,37 +605,61 @@ namespace LeetCode
             }
 
 
-            //int count = 0, k = 0, m = 0;
-            //int i = str.Length;
-            //string name1 = String.Empty;
 
-            //for (int j = 0; j < i; j++)
-            //{
-            //    char name = str[m];
-
-            //    while (j < i)
-            //    {
-            //        if (str[j].ToString() == name.ToString())
-            //        {
-            //            count++;
-            //            k++;
-            //        }
-            //        j++;
-
-            //    }
-            //    j = k - 1;
-
-            //    name1 = name1 + str[m].ToString() + count;
-            //    m = k;
-            //    count = 0;
-
-
-            //}
-            //Console.WriteLine("{0}", name1);
-            //Console.ReadKey();
-            //j1a1i1m2e1
             return sb.ToString();
         }
+
+        public static string StringComp(string s)
+        {
+
+
+            LinkedList<char> list = new LinkedList<char>();
+
+            foreach (char c in s.ToCharArray())
+            {
+                list.AddLast(c);
+
+            }
+            int i = 0;
+            while (i< s.Length)
+            {
+                if(list.First == list.)
+                list.First
+            }
+        }
+        //public static string StringComp(string str)
+        //{
+
+        //    int count = 0, k = 0, m = 0;
+        //    int i = str.Length;
+        //    string name1 = String.Empty;
+
+        //    for (int j = 0; j < i; j++)
+        //    {
+        //        char name = str[m];
+
+        //        while (j < i)
+        //        {
+        //            if (str[j].ToString() == name.ToString())
+        //            {
+        //                count++;
+        //                k++;
+        //            }
+        //            j++;
+
+        //        }
+        //        j = k - 1;
+
+        //        name1 = name1 + str[m].ToString() + count;
+        //        m = k;
+        //        count = 0;
+
+
+        //    }
+
+        //j1a1i1m2e1
+
     }
+    
 }
 
